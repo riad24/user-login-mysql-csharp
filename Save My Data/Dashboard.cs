@@ -25,6 +25,7 @@ namespace Save_My_Data
         public MySqlDataReader dr;
         public DataSet ds;
         public int kid = Properties.Settings.Default.id;
+        
        
         private void button1_Click(object sender, EventArgs e)
         {
@@ -37,7 +38,6 @@ namespace Save_My_Data
             if (sonuc != null)
             {
                 MessageBox.Show("Sisteme başarıyla eklendi", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                 db.Close();
                 veriListele();
             }
@@ -47,11 +47,8 @@ namespace Save_My_Data
             dataGridView1.DataSource = null;
             db.Close();
             MySqlCommand mycom = new MySqlCommand("Select id,bir,iki From bilgiler Where kid=" + kid.ToString(), db);
-
             MySqlDataAdapter adap = new MySqlDataAdapter("Select id,bir,iki From bilgiler Where kid=" + kid.ToString(), db);
-
             DataTable dt = new DataTable();
-
             adap.Fill(dt);
 
             dataGridView1.DataSource = dt;
